@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Adding custom markers as layer in leaflet map</title>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body>
+<div id="map" style="width: 600px;height: 400px"></div>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([14.6, 2.9], 5);
+mapLink = '<a href="http://openstreetmap.org">openstreetmap</a>,'+'<a href="http://mapsnigeriainitiative.wordpress.com">mapsNI</a>';
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: ' &copy; ' + mapLink,maxZoom: 18}).addTo(map);
+
+var points = [{
+"type":"Feature","properties":{"name_1":"Sokoto","ph":6},"geometry":{"type":"Point","coordinates":[5.266603333,13.23052555]}},
+{"type":"Feature","properties":{"name_1":"Zamfara","ph": 5},"geometry":{"type":"Point","coordinates":[6.3891224,11.62692688]}},
+{"type":"Feature","properties":{"name_1":"Niger","ph": 4},"geometry":{"type":"Point","coordinates":[6.208717551,10.06341818]}},
+{"type":"Feature","properties":{"name_1":"Niger","ph":2},"geometry":{"type":"Point","coordinates":[5.0661535,9.943148283]}},
+{"type":"Feature","properties":{"name_1":"Niger","ph":2},"geometry":{"type":"Point","coordinates":[6.369077417,9.261618849]}},
+{"type":"Feature","properties":{"name_1":"Kaduna","ph":2},"geometry":{"type":"Point","coordinates":[7.9526311,9.642473533]}},
+{"type":"Feature","properties":{"name_1":"Kaduna","ph":2},"geometry":{"type":"Point","coordinates":[7.611866384,10.5244528]}},
+{"type":"Feature","properties":{"name_1":"Kano","ph":7},"geometry":{"type":"Point","coordinates":[8.433710701,11.66701685]}},
+{"type":"Feature","properties":{"name_1":"Jigawa","ph":9},"geometry":{"type":"Point","coordinates":[9.556229767,12.0879615]}},
+{"type":"Feature","properties":{"name_1":"Bauchi","ph":7},"geometry":{"type":"Point","coordinates":[10.5985689,11.68706183]}},
+{"type":"Feature","properties":{"name_1":"Bauchi","ph":7},"geometry":{"type":"Point","coordinates":[10.19766923,10.30395798]}},
+{"type":"Feature","properties":{"name_1":"Bauchi","ph":7},"geometry":{"type":"Point","coordinates":[9.295644984,10.54449778]}},
+{"type":"Feature","properties":{"name_1":"Plateau","ph":5},"geometry":{"type":"Point","coordinates":[9.57627475,9.001034067]}},
+{"type":"Feature","properties":{"name_1":"Plateau","ph":5},"geometry":{"type":"Point","coordinates":[9.055105183,9.4420237]}},
+{"type":"Feature","properties":{"name_1":"Nassarawa","ph":5},"geometry":{"type":"Point","coordinates":[8.393620734,8.499909483]}},
+{"type":"Feature","properties":{"name_1":"Benue","ph":5},"geometry":{"type":"Point","coordinates":[8.714340467,7.317255466]}},
+{"type":"Feature","properties":{"name_1":"Cross River","ph":5},"geometry":{"type":"Point","coordinates":[8.714340467,6.234826366]}},
+{"type":"Feature","properties":{"name_1":"Taraba","ph":10},"geometry":{"type":"Point","coordinates":[10.29789415,8.038874867]}},
+{"type":"Feature","properties":{"name_1":"Taraba","ph":10},"geometry":{"type":"Point","coordinates":[11.34023328,7.377390417]}},
+{"type":"Feature","properties":{"name_1":"Taraba","ph":3},"geometry":{"type":"Point","coordinates":[11.24000837,8.680314333]}},
+{"type":"Feature","properties":{"name_1":"Adamawa","ph":2},"geometry":{"type":"Point","coordinates":[12.48279733,9.522203633]}},
+{"type":"Feature","properties":{"name_1":"Borno","ph":2},"geometry":{"type":"Point","coordinates":[12.90374198,10.94539745]}}];
+var icon = L.icon({iconUrl: "image.png",iconSize: [40, 20]	});
+
+var icon = L.icon({
+iconUrl:"https://lh3.googleusercontent.com/_apJiX06lWEtuQSB2mhunUEV-iw2siA-5eoaIHZTD9g_GZv96ho6W6W_-66sVYwhohQMNBKNPQtRrWPeK3EbCpQJinTl5mtv-4MUTdTiAmTBJM_eMOlgerYayuEhfHEdtYKDMuteH1KqpDLgCZvp3X0qk0igdGEH_WxztSpXTfCPffCeRPYnHVcaSYKNrUoTkFQOrXLhd_8SgczOtA_OczAEKZ14v0ALJ5pfyOsI9Wx6dW7pT0BnDO7DMMswqy51eGyZCzDrVJnCw19x71jAkykBtB4kwDZR33lyF03jfqGoeJbK7FdL8Sw81mYr4gUL-3siPVsBT4Dkx1d5OtkjLFIiV3U_2sBjqHD6pqsJoRs29Xu-WUSxl14fgHD5dRVWj6HVa8oQ4vLQiGWnA0518VJ6R5WflD5rfHIWNgdDdYv7xXJG1kNQVl2MuffhUqFR14sI3nn6qHgMB-gxvBmNUcuMHFyGl7oIPB0dq7QNAnxHS43J5vRVYFWkzRZ6otNotfKhbcVLLyCzvjAMxq06G5AcpIbhb5Qmr3SKNuHdNddkiak9zAd3Wt5I_KDQ02KDUKqt=w119-h109-no",
+iconSize: [20, 20]
+});
+
+L.geoJson(points, {
+pointToLayer: function(feature, latlng){
+marker = L.marker(latlng, {icon: icon});
+marker.bindPopup("<strong>" + feature.properties.name_1 + "<br>" + feature.properties.ph);
+return marker;
+}}).addTo(map);
+</script>
+</body>
+</html>
