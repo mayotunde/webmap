@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>visualizing multiple leaflet maps on same webpage using HTML</title>
+<link rel="stylesheet" 
+	href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+/>
+</head>
+<body>
+<h4 style="color:red;"> Comparison analysis of the PH testing carried out on same sites in 1997 and 1999</h4>
+<p><small>The Left side map indicate results of the work carried out in 1997 and the right side map indicate results of the work carried out in 1998</small><p>
+<p><small>The overall comparison shows that the status of some sites changed from basic in 1997 to acidic in 1999.</small><p>
+
+<div id="map" style="width: 480px;height: 500px;vertical-align: Top;float: left"></div><div id="map2" style="width: 500px;height: 500px; vertical-align: Top; float: right"></div>
+
+<script 
+	src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+<script>
+var map = L.map('map').setView([4.6, 2.9], 5);
+mapLink = 
+'<a href="https://mapbox.com">mapbox</a>,'+
+'<a href="http://mapsnigeriainitiative.wordpress.com">mapsnigeriainitiative</a>';
+L.tileLayer(
+'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ',
+{ attribution:' Map data &copy;' + mapLink, maxZoom: 18, }).addTo(map);
+
+L.circleMarker([7.00, 9.00], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 101<br>PH: 6<br>Status: Acidic").addTo(map);
+L.circleMarker([10.00, 9.50], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 102<br>PH: 8<br>Status: Basic").addTo(map);
+L.circleMarker([7.00, 3.00], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 103<br>PH: 10<br>Status: Basic").addTo(map);
+L.circleMarker([5.00, 6.18], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 104<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([11.62692688, 6.3891224], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 105<br>PH: 6<br>Status: Acidic").addTo(map);
+L.circleMarker([9.522203633, 12.48279733], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 106<br>PH: 8<br>Status: Basic").addTo(map);
+L.circleMarker([8.680314333, 11.24000837], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 107<br>PH: 10<br>Status: Basic").addTo(map);
+L.circleMarker([10.37929252, 11.34413484], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 108<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([10.37929252, 11.34413484], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 109<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.21433285, 4.198137544], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 110<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.0879615, 9.556229767], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 111<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.02782655, 11.54068312], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 112<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.86971585, 13.08414683], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 113<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([10.06341818, 6.208717551], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 114<br>PH: 3<br>Status: Acidic").addTo(map);
+
+
+var map = L.map('map2').setView([4.6, 2.9], 5);
+mapLink = 
+'<a href="https://mapbox.com">mapbox</a>,'+
+'<a href="http://mapsnigeriainitiative.wordpress.com">mapsnigeriainitiative</a>';
+L.tileLayer(
+'https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IjZjNmRjNzk3ZmE2MTcwOTEwMGY0MzU3YjUzOWFmNWZhIn0.Y8bhBaUMqFiPrDRW9hieoQ',
+{ attribution:' Map data &copy;' + mapLink, maxZoom: 18, }).addTo(map);
+
+L.circleMarker([7.00, 9.00], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 101<br>PH: 6<br>Status: Acidic").addTo(map);
+L.circleMarker([10.00, 9.50], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 102<br>PH: 8<br>Status: Basic").addTo(map);
+L.circleMarker([7.00, 3.00], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 103<br>PH: 10<br>Status: Basic").addTo(map);
+L.circleMarker([5.00, 6.18], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 104<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([11.62692688, 6.3891224], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 105<br>PH: 6<br>Status: Acidic").addTo(map);
+L.circleMarker([9.522203633, 12.48279733], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 106<br>PH: 8<br>Status: Basic").addTo(map);
+L.circleMarker([8.680314333, 11.24000837], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 107<br>PH: 10<br>Status: Basic").addTo(map);
+L.circleMarker([10.37929252, 11.34413484], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 108<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([10.37929252, 11.34413484], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 109<br>PH: 8<br>Status: Basic").addTo(map);
+L.circleMarker([12.21433285, 4.198137544], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 110<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.0879615, 9.556229767], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 111<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([12.02782655, 11.54068312], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 112<br>PH: 9<br>Status: Basic").addTo(map);
+L.circleMarker([12.86971585, 13.08414683], {fillColor: "red", radius: 8, color: "black"}).bindPopup("Site 113<br>PH: 3<br>Status: Acidic").addTo(map);
+L.circleMarker([10.06341818, 6.208717551], {fillColor: "blue", radius: 8, color: "black"}).bindPopup("Site 114<br>PH: 10<br>Status: Basic").addTo(map);
+
+</script>
+</body>
+</html>
