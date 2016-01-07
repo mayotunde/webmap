@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Adding geojson point features using mapbox js</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
+
+</head>
+<body>
+
+<div id='map' style='width:700px;height:500px'></div>
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoibWF5b3R1bmRlIiwiYSI6IlpFM1Jmck0ifQ.13TB14FKWB328q1q7eEZUQ';
+var points = [
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [9.56,8.27]
+    },
+    "properties": {
+      "title": "Abuja",
+      "marker-color": "#ea7",
+      "marker-size": "large",
+      "marker-symbol": "circle"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [3.02,4.00]
+    },
+    "properties": {
+      "title": "Lagos",
+      "marker-color": "#ea7",
+      "marker-size": "large",
+      "marker-symbol": "circle"
+    }
+  }
+];
+
+L.mapbox.map('map', 'mapbox.light')
+  .setView([4.9, 2.6], 4)
+  .featureLayer.setGeoJSON(points);
+
+
+</script>
+
+</body>
+</html>
