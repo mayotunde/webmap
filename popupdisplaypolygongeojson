@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<p style='color:red'><strong>Move the mouse pointer over the polygon features to activate the popup display board</strong></p>
 
 <div id='map' style="width: 600px;height: 400px";></div>
 <div id='info' class='info'></div>
