@@ -24,7 +24,7 @@ border: 1px solid black;
 }
 </style>
 
-<div id="map" style="width: 700px;height: 450px"></div>
+<div id="map" style="width: 700px;height: 500px"></div>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
 <script>
@@ -59,7 +59,7 @@ var legend = L.control({position: 'bottomright'});
 
 legend.onAdd = function (map) {
 
-    var div = L.DomUtil.create('div', 'info legend'),
+    var div = L.DomUtil.create('div', 'legend'),
         grades = [2000000, 3000000, 4000000],
         labels = [];
 
