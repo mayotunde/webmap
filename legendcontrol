@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Legend Control in leaflet powered maps</title>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+</head>
+<body style='background: grey;'>
+<style>
+.legend {
+    line-height: 18px;
+    color: #000;
+   background:#eeeeee;
+ padding: 20px;
+border: 1px solid black;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+</style>
+
+<div id="map" style="width: 700px;height: 450px"></div>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<script>
+var map = L.map('map').setView([7.60, 4.90], 7);
+mapLink = '<a href="http://openstreetmap.org">openstreetmap</a>,'+'<a href="http://mapsnigeriainitiative.wordpress.com">mapsNI</a>,'+'Census data:NPC 2006'; 
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: ' &copy; ' + mapLink,maxZoom: 18}).addTo(map);
+
+
+function getColor(d) {
+    return d > 4000000 ? '#800026' :
+           d > 3000000  ? '#BD0026' :
+ 	d > 2000000  ? '#FFEDA0' :
+                                  '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.population),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+$.getJSON('southwest.geojson', function(data){
+L.geoJson(data, {style: style}).addTo(map);
+});
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [2000000, 3000000, 4000000],
+        labels = [];
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(map);
+</script>
+</body>
+</html>
